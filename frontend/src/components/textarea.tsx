@@ -7,8 +7,11 @@ export const Textarea = forwardRef(function Textarea(
     className,
     resizable = true,
     ...props
-  }: { className?: string; resizable?: boolean } & Omit<Headless.TextareaProps, 'className'>,
-  ref: React.ForwardedRef<HTMLTextAreaElement>
+  }: { className?: string; resizable?: boolean } & Omit<
+    Headless.TextareaProps,
+    'className'
+  >,
+  ref: React.ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
     <span

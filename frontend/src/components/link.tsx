@@ -4,7 +4,7 @@ import { Link as ReactRouterLink, type LinkProps } from 'react-router-dom';
 
 export const Link = React.forwardRef(function Link(
   props: { href: string | LinkProps['to'] } & Omit<LinkProps, 'to'>,
-  ref: React.ForwardedRef<HTMLAnchorElement>
+  ref: React.ForwardedRef<HTMLAnchorElement>,
 ) {
   return (
     <Headless.DataInteractive>

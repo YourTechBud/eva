@@ -14,10 +14,13 @@ export default tseslint.config({
     'simple-import-sort': simpleImportSort,
   },
   rules: {
-    'indent': ['error', 2],
+    indent: ['error', 2],
     '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/quotes': ['error', 'single'],
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
