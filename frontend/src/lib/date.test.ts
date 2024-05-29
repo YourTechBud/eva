@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { checkDate, formatDate } from './date';
+import { checkDate, formatDate, formatDay, formatTime } from './date';
 
 describe('formatDate', () => {
   it('formats a date as dd-mm-yyyy', () => {
@@ -62,5 +62,27 @@ describe('checkDate', () => {
   it('returns formatted date for dates not today, tomorrow, next week, or last week', () => {
     const randomDate = new Date(2024, 0, 15); // A random date that doesn't match any of the above conditions
     expect(checkDate(randomDate.toISOString())).toBe(formatDate(randomDate));
+  });
+});
+
+describe('formatDay', () => {
+  it('formats an RFC 3339 date string to a readable date', () => {
+    const rfc3339String = '2022-01-10T10:00:00-07:00';
+    const formattedDate = formatDay(rfc3339String);
+    expect(formattedDate).toBe('January 10th, 2022');
+  });
+});
+
+describe('formatTime', () => {
+  it('formats an RFC 3339 date string to a readable time AM', () => {
+    const rfc3339String = '2022-01-10T10:00:00-08:00';
+    const formattedDate = formatTime(rfc3339String);
+    expect(formattedDate).toBe('10:00 AM');
+  });
+
+  it('formats an RFC 3339 date string to a readable time PM', () => {
+    const rfc3339String = '2022-01-10T22:00:00-08:00';
+    const formattedDate = formatTime(rfc3339String);
+    expect(formattedDate).toBe('10:00 PM');
   });
 });

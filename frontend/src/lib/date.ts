@@ -80,3 +80,40 @@ export function getDifferenceInDays(rfc3339String: string) {
 
   return differenceInDays;
 }
+
+// Format the day in the format - `January 10th, 2022`
+export function formatDay(rfc3339String: string) {
+  const date = new Date(rfc3339String);
+
+  const nth = (day: number) => {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${monthNames[monthIndex]} ${day}${nth(day)}, ${year}`;
+}
+
+// Fomat the time in the format - `10:00 AM`
+export function formatTime(rfc3339String: string) {
+  const date = new Date(rfc3339String);
+
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = hours % 12 || 12; // The hour '0' should be '12'
+
+  return `${formattedHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+}
