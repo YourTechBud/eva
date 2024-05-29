@@ -21,9 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
+      "@/components/*": ["./src/ui/components/*"],
+      "@/widgets/*": ["./src/ui/widgets/*"],
       "@/*": ["./src/*"]
     }
   },
+  "exclude": ["./src/**/*.test.ts", "./src/**/*.test.tsx"],
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -14,7 +14,7 @@ export default tseslint.config({
     'simple-import-sort': simpleImportSort,
   },
   rules: {
-    indent: ['error', 2],
+    indent: ['error', 2, { SwitchCase: 1 }],
     '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/quotes': ['error', 'single'],
     '@typescript-eslint/no-unused-vars': [

@@ -1,7 +1,7 @@
 // import * as Headless from '@headlessui/react';
 import {
   ArrowRightStartOnRectangleIcon,
-  ChevronUpIcon,
+  ChevronDownIcon,
   Cog8ToothIcon,
   UserIcon,
 } from '@heroicons/react/16/solid';
@@ -13,6 +13,7 @@ import {
   QuestionMarkCircleIcon,
   SparklesIcon,
 } from '@heroicons/react/20/solid';
+import { Outlet, useLocation } from 'react-router';
 
 import { Avatar } from '@/components/avatar';
 import {
@@ -42,6 +43,7 @@ import {
 import { SidebarLayout } from '@/components/sidebar-layout';
 
 export default function Root() {
+  const { pathname } = useLocation();
   return (
     <SidebarLayout
       navbar={
@@ -74,7 +76,7 @@ export default function Root() {
                     </span>
                   </span>
                 </span>
-                <ChevronUpIcon />
+                <ChevronDownIcon />
               </DropdownButton>
               <DropdownMenu className="min-w-64" anchor="bottom start">
                 <DropdownItem href="/my-profile">
@@ -96,26 +98,38 @@ export default function Root() {
           <SidebarBody>
             <SidebarSection>
               <SidebarHeading>My Tasks</SidebarHeading>
-              <SidebarItem href="/tasks/today">
+              <SidebarItem
+                href="/tasks/today"
+                current={pathname === '/tasks/today'}
+              >
                 <CalendarDaysIcon />
                 <SidebarLabel>Today</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="/tasks/inbox">
+              <SidebarItem
+                href="/tasks/inbox"
+                current={pathname === '/tasks/inbox'}
+              >
                 <InboxIcon />
                 <SidebarLabel>Inbox</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="/tasks/view-all">
+              <SidebarItem
+                href="/tasks/view-all"
+                current={pathname === '/tasks/view-all'}
+              >
                 <InboxStackIcon />
                 <SidebarLabel>View All</SidebarLabel>
               </SidebarItem>
             </SidebarSection>
             <SidebarSpacer />
             <SidebarSection>
-              <SidebarItem href="/support">
+              <SidebarItem href="/support" current={pathname === '/support'}>
                 <QuestionMarkCircleIcon />
                 <SidebarLabel>Support</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="/changelog">
+              <SidebarItem
+                href="/changelog"
+                current={pathname === '/changelog'}
+              >
                 <SparklesIcon />
                 <SidebarLabel>Changelog</SidebarLabel>
               </SidebarItem>
@@ -124,7 +138,7 @@ export default function Root() {
         </Sidebar>
       }
     >
-      <div className="grow touch-none">hi</div>
+      <Outlet />
     </SidebarLayout>
   );
 }
