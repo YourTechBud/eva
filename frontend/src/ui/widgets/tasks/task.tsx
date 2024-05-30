@@ -3,15 +3,7 @@ import { CalendarDaysIcon } from '@heroicons/react/16/solid';
 import MyCheckbox from '@/components/checkbox';
 import { checkDate, getDifferenceInDays } from '@/lib/date';
 
-interface Task {
-  id: number;
-  title: string;
-  description?: string;
-  completed?: boolean;
-  priority: number;
-  effort: number;
-  dueDate?: string;
-}
+import { TaskItem } from './types';
 
 const calculatePriorityColor = (priority: number) => {
   switch (priority) {
@@ -51,7 +43,7 @@ const calculateDaysColor = (dueDate: string) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function Task({ task }: { task: Task }) {
+export default function Task({ task }: { task: TaskItem }) {
   return (
     <div
       key={task.id}

@@ -9,52 +9,45 @@ import {
   DropdownItem,
   DropdownMenu,
 } from '@/components/dropdown';
-import { Heading } from '@/components/heading';
+import PageHeading from '@/components/page-heading';
+import PagePanel from '@/components/page-panel';
 import { formatDay, formatTime } from '@/lib/date';
 import FocusedItem from '@/widgets/focused-item';
-import Task from '@/widgets/task';
+import TaskListing from '@/widgets/tasks/task-listing';
+
+const tasks = [
+  {
+    id: 1,
+    title: 'Write blog post for Redis Write Through Cache',
+    description: 'Base it off of our YouTube video on the topic.',
+    completed: false,
+    priority: 4,
+    effort: 2,
+  },
+  {
+    id: 2,
+    title: 'Review XLR8s PRs',
+    completed: false,
+    priority: 1,
+    effort: 1,
+    dueDate: '2024-05-28T00:10:01-07:00',
+  },
+  {
+    id: 3,
+    title:
+      'A story from Ahmed Besbes on Medium Read this story from Ahmed Besbes on Medium: Improve RAG Pipelines With These 3 Indexing Methods',
+    description:
+      'This is a story from Ahmed Besbes on Medium. Read this story from Ahmed Besbes on Medium: Improve RAG Pipelines With These 3 Indexing Methods',
+    completed: false,
+    priority: 2,
+    effort: 2,
+    dueDate: '2024-05-08T00:10:01-07:00',
+  },
+];
 
 export default function Today() {
+  // Move the scrollbar logic into the page-content component
   const [isTasksHovered, setTasksHovered] = useState(false);
-  const effortArray = ['Intense', 'Medium', 'Light'];
-  const tasks = [
-    {
-      id: 1,
-      title: 'Write blog post for Redis Write Through Cache',
-      description: 'Base it off of our YouTube video on the topic.',
-      completed: false,
-      priority: 4,
-      effort: 2,
-    },
-    {
-      id: 2,
-      title: 'Review XLR8s PRs',
-      completed: false,
-      priority: 1,
-      effort: 1,
-      dueDate: '2024-05-28T00:10:01-07:00',
-    },
-    {
-      id: 3,
-      title:
-        'A story from Ahmed Besbes on Medium Read this story from Ahmed Besbes on Medium: Improve RAG Pipelines With These 3 Indexing Methods',
-      description:
-        'This is a story from Ahmed Besbes on Medium. Read this story from Ahmed Besbes on Medium: Improve RAG Pipelines With These 3 Indexing Methods',
-      completed: false,
-      priority: 2,
-      effort: 2,
-      dueDate: '2024-05-08T00:10:01-07:00',
-    },
-  ];
-
-  const effortList = effortArray
-    .map((effort, i) => {
-      return {
-        effort,
-        tasks: tasks.filter(t => t.effort === 2 - i),
-      };
-    })
-    .filter(e => e.tasks.length > 0);
 
   const meetings = [
     {
@@ -78,48 +71,23 @@ export default function Today() {
   ];
   return (
     <>
-      <div
+      <PagePanel
         onMouseEnter={() => setTasksHovered(true)}
         onMouseLeave={() => setTasksHovered(false)}
         className={clsx(
-          'w-[100vw] overflow-y-auto pb-4 pl-10 pr-10 lg:my-3 lg:w-[50%] lg:rounded-lg lg:bg-white lg:shadow-sm lg:ring-1 lg:ring-zinc-950/5 dark:lg:bg-zinc-900 dark:lg:ring-white/10',
+          'w-[100vw] overflow-y-auto lg:w-[50%]',
           isTasksHovered ? 'on-scroll-hover' : '',
         )}
       >
-        <div className="top-0 z-10 bg-white pb-2 pt-2 lg:pt-10">
-          <div className="sm:mt-2 md:flex md:items-center md:justify-between">
-            <div className="min-w-0 flex-1">
-              <Heading>Day at a Glance</Heading>
-            </div>
-          </div>
-        </div>
+        <PageHeading text="Day at a Glance" />
         <div className="h-2"></div>
+        <FocusedItem title="K8s Daily Stand Up" type="meeting" />
+        <div className="h-4"></div>
         <div>
-          <FocusedItem title="K8s Daily Stand Up" type="meeting" />
-          <div className="h-4"></div>
-          {effortList.map(({ effort, tasks }) => (
-            <div key={effort}>
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="text-base font-semibold leading-6 text-gray-900">
-                  {effort}
-                </h3>
-              </div>
-
-              <ul role="list" className="divide-y divide-gray-100">
-                {tasks
-                  // TODO: Sort first by due date and then by priority.
-                  .sort((a, b) => a.priority - b.priority)
-                  .map(task => (
-                    <li key={task.id}>
-                      <Task task={task} />
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
+          <TaskListing tasks={tasks} />
         </div>
-      </div>
-      <div className="my-3 hidden overflow-y-auto lg:block lg:w-[50%] lg:rounded-lg lg:bg-white lg:pb-10 lg:pl-10 lg:pr-10 lg:shadow-sm lg:ring-1 lg:ring-zinc-950/5 dark:lg:bg-zinc-900 dark:lg:ring-white/10">
+      </PagePanel>
+      <PagePanel className="hidden overflow-y-auto lg:block lg:w-[50%]">
         <div className="top-0 z-10 bg-white pt-10">
           <div className="sm:mt-2 md:flex md:items-center md:justify-between">
             <div className="min-w-0 flex-1 border-b border-gray-200 pb-4">
@@ -210,7 +178,7 @@ export default function Today() {
             </li>
           ))}
         </ol>
-      </div>
+      </PagePanel>
     </>
   );
 }
