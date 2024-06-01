@@ -102,6 +102,7 @@ export default function Event({ event }: EventProps) {
                   attendeeNameArray[attendeeNameArray.length - 1][0];
                 return (
                   <Avatar
+                    key={index}
                     initials={initials}
                     className="size-6 cursor-pointer bg-gray-500 text-white ring-2 ring-white transition-all"
                     style={{ zIndex: (event.attendees.length - index) * 10 }}

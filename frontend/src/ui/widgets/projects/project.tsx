@@ -29,7 +29,7 @@ export default function Project({ project }: ProjectProps) {
       <div>
         <div className="flex space-x-2">
           <p className="text-sm font-semibold leading-6 text-gray-900">
-            <p>{project.title}</p>
+            {project.title}
           </p>
           <p
             className={clsx(
@@ -49,14 +49,14 @@ export default function Project({ project }: ProjectProps) {
                 <svg viewBox="0 0 2 2" className="h-0.5 w-0.5 fill-current">
                   <circle cx={1} cy={1} r={1} />
                 </svg> */}
-          <p>
+          <div>
             {!project.dueDate && <p>No due date specified</p>}
             {project.dueDate && (
               <time dateTime={project.dueDate}>
                 Due on {formatDay(project.dueDate)}
               </time>
             )}
-          </p>
+          </div>
         </div>
       </div>
       <dl className="flex w-full flex-none justify-between gap-x-1 sm:w-auto">
