@@ -1,6 +1,6 @@
 import { CalendarDaysIcon } from '@heroicons/react/16/solid';
 
-import MyCheckbox from '@/components/checkbox';
+import Checkbox from '@/components/checkbox';
 import { checkDate, getDifferenceInDays } from '@/lib/date';
 
 import { TaskItem } from './types';
@@ -50,7 +50,7 @@ export default function Task({ task }: { task: TaskItem }) {
       className="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 lg:px-8"
     >
       <div className="flex min-w-0 gap-x-4">
-        <MyCheckbox
+        <Checkbox
           className="mt-[0.1rem] flex-none"
           color={calculatePriorityColor(task.priority)}
         />
