@@ -23,6 +23,7 @@ export default function Checkbox(props: CheckboxProps) {
     <HeadlessCheckbox
       checked={props.enabled}
       onChange={props.setEnabled}
+      onClick={e => e.stopPropagation()}
       className={clsx(
         'group size-5 rounded-md bg-white/10 p-1 shadow-none ring-1 ring-inset transition hover:shadow-sm data-[checked]:bg-white',
         colors[props.color],

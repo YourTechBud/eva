@@ -16,6 +16,9 @@ const tasks = [
     completed: false,
     priority: 4,
     effort: 2,
+    lastUpdate: `Done with the outline. Need to:
+- Write the intro
+- Verify Redis keyspace notifications`,
   },
   {
     id: 2,

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import * as Headless from '@headlessui/react';
 import { clsx } from 'clsx';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
 export function InputGroup({
   children,
@@ -101,3 +101,27 @@ export const Input = forwardRef(function Input(
     </span>
   );
 });
+
+export const InputTitle = (
+  props: React.DetailedHTMLProps<
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    HTMLTextAreaElement
+  >,
+) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '1px';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [props.value]);
+
+  return (
+    <textarea
+      ref={textareaRef}
+      className="w-full border-none text-lg outline-none focus:ring-0 disabled:pointer-events-none disabled:opacity-50"
+      {...props}
+    />
+  );
+};

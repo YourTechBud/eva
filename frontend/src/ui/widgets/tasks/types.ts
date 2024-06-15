@@ -6,4 +6,6 @@ export interface TaskItem {
   priority: number;
   effort: number;
   dueDate?: string;
+  project?: string;
+  lastUpdate?: string;
 }

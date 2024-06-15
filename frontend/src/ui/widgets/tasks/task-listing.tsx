@@ -1,38 +1,47 @@
+import { useState } from 'react';
+
 import SectionHeading from '@/components/section-heading';
 
+import { groupTasksByEffort } from './helpers';
 import Task from './task';
+import TaskDialog from './task-dialog';
 import { TaskItem } from './types';
 
-const effortArray = ['Intense', 'Medium', 'Light'];
-
 export default function TaskListing({ tasks }: { tasks: TaskItem[] }) {
-  const effortList = effortArray
-    .map((effort, i) => {
-      return {
-        effort,
-        tasks: tasks.filter(t => t.effort === 2 - i),
-      };
-    })
-    .filter(e => e.tasks.length > 0);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
+
+  const tasksByEffort = groupTasksByEffort(tasks);
+  const selectedTask = tasks.find(t => t.id === selectedTaskId);
+
+  // Always open the dialog when a task is selected.
+  const selectTask = (id: number) => {
+    setSelectedTaskId(id);
+    setTimeout(() => setOpenDialog(true), 100);
+  };
 
   return (
     <>
-      {effortList.map(({ effort, tasks }) => (
+      {tasksByEffort.map(({ effort, tasks }) => (
         <div key={effort}>
           <SectionHeading title={effort} />
 
           <ul role="list" className="divide-y divide-gray-100">
-            {tasks
-              // TODO: Sort first by due date and then by priority.
-              .sort((a, b) => a.priority - b.priority)
-              .map(task => (
-                <li key={task.id}>
-                  <Task task={task} />
-                </li>
-              ))}
+            {tasks.map(task => (
+              <li key={task.id}>
+                <Task open={selectTask} task={task} />
+              </li>
+            ))}
           </ul>
         </div>
       ))}
+      {selectedTask && (
+        <TaskDialog
+          isOpen={openDialog}
+          setIsOpen={setOpenDialog}
+          task={selectedTask}
+        />
+      )}
     </>
   );
 }

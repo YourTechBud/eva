@@ -7,9 +7,9 @@ import { Link } from './link';
 const styles = {
   base: [
     // Base
-    'relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold',
+    'relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-medium transition',
     // Sizing
-    'px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)] sm:text-sm/6',
+    'px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
     // Focus
     'focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500',
     // Disabled
@@ -51,7 +51,7 @@ const styles = {
   ],
   plain: [
     // Base
-    'border-transparent text-zinc-950 data-[active]:bg-zinc-950/5 data-[hover]:bg-zinc-950/5',
+    'border-transparent text-zinc-700 data-[active]:bg-zinc-950/5 data-[hover]:bg-zinc-950/5',
     // Dark mode
     'dark:text-white dark:data-[active]:bg-white/10 dark:data-[hover]:bg-white/10',
     // Icon
