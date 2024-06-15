@@ -3,6 +3,7 @@ import { DateLabel } from '@/components/date';
 
 import { calculatePriorityColor } from '../../../lib/priority';
 import { ProjectLabel } from '../projects/project-label';
+import { getEffortText } from './helpers';
 import { TaskItem } from './types';
 
 interface TaskDetailsProps {
@@ -42,7 +43,9 @@ export default function Task({ task, open }: TaskDetailsProps) {
       <div className="flex shrink-0 items-center gap-x-4">
         <div className="flex flex-col items-end">
           <ProjectLabel name={task.project} />
-          <p className="mt-1 text-xs leading-5 text-gray-500">Intense</p>
+          <p className="mt-1 text-xs leading-5 text-gray-500">
+            {getEffortText(task.effort)}
+          </p>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ export const groupTasksByEffort = (tasks: TaskItem[]): { effort: string, tasks: 
     .map((effort, i) => {
       return {
         effort,
-        tasks: tasks.filter(t => t.effort === 2 - i)
+        tasks: tasks.filter(t => t.effort === i + 1)
           // TODO: Sort first by priority and the due date.
           .sort((a, b) => a.priority - b.priority),
       };
