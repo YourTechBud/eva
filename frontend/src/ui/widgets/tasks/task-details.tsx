@@ -1,21 +1,15 @@
-import { MenuButton } from '@headlessui/react';
-import {
-  Bars3BottomLeftIcon,
-  ChevronDownIcon,
-  PlusIcon,
-} from '@heroicons/react/16/solid';
+import { Bars3BottomLeftIcon, PlusIcon } from '@heroicons/react/16/solid';
 
 import { Button } from '@/components/button';
 import Checkbox from '@/components/checkbox';
-import Date from '@/components/date';
-import { Dropdown, DropdownItem, DropdownMenu } from '@/components/dropdown';
+import { DateSelector } from '@/components/date';
 import { InputTitle } from '@/components/input';
-import Priority from '@/components/priority';
+import { PrioritySelector } from '@/components/priority';
 
 import { calculatePriorityColor } from '../../../lib/priority';
 import { RichTextEditor } from '../editor/rich-text';
-import ProjectLabel from '../projects/project-label';
-import { getEffortText } from './helpers';
+import { ProjectSelector } from '../projects/project-label';
+import { EffortSelector } from './effort';
 import { TaskItem } from './types';
 
 interface TaskDetailsProps {
@@ -72,40 +66,29 @@ export default function TaskDetails({ task }: TaskDetailsProps) {
         <div className="mt-8 border-t border-zinc-100  py-1 pl-6 pt-6 lg:mt-0 lg:w-64 lg:border-l lg:border-t-0 lg:pt-0">
           <h4 className="text-xs font-semibold text-gray-600">Project</h4>
           <div className="h-1"></div>
-          <Dropdown>
-            <MenuButton
-              className="ml-[-0.5rem] flex w-full items-center rounded-xl border border-transparent p-1 transition data-[active]:border-zinc-200 data-[hover]:border-zinc-200 dark:data-[active]:border-zinc-700 dark:data-[hover]:border-zinc-700"
-              aria-label="Account options"
-            >
-              <ProjectLabel className="ml-1" size="xs" name={task.project} />
-              <ChevronDownIcon className="ml-auto mr-1 size-4 shrink-0 stroke-zinc-400" />
-            </MenuButton>
-            <DropdownMenu className="min-w-48">
-              <DropdownItem>Get in Shape!</DropdownItem>
-              <DropdownItem>Notifications</DropdownItem>
-              <DropdownItem>Billing</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <ProjectSelector
+            className="ml-[-0.5rem]"
+            project={task.project}
+            projects={['Inbox', 'My Project']}
+          />
 
           <div className="mb-4 mt-3 border-b border-zinc-100"></div>
 
           <h4 className="text-xs font-semibold text-gray-600">Due Date</h4>
           <div className="h-1"></div>
-          <Date date={task.dueDate} />
+          <DateSelector className="ml-[-0.5rem]" date={task.dueDate} />
 
-          <div className="mb-4 mt-4 border-b border-zinc-100"></div>
+          <div className="mb-4 mt-3 border-b border-zinc-100"></div>
 
           <h4 className="text-xs font-semibold text-gray-600">Priority</h4>
-          <div className="h-2"></div>
-          <Priority priority={task.priority} />
+          <div className="h-1"></div>
+          <PrioritySelector className="ml-[-0.5rem]" priority={task.priority} />
 
-          <div className="mb-4 mt-4 border-b border-zinc-100"></div>
+          <div className="mb-4 mt-3 border-b border-zinc-100"></div>
 
           <h4 className="text-xs font-semibold text-gray-600">Effort</h4>
-          <div className="h-2"></div>
-          <p className="text-xs font-semibold text-gray-900">
-            {getEffortText(task.effort)}
-          </p>
+          <div className="h-1"></div>
+          <EffortSelector className="ml-[-0.5rem]" effort={task.effort} />
         </div>
       </div>
     </>

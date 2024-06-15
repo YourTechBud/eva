@@ -1,8 +1,8 @@
 import Checkbox from '@/components/checkbox';
-import Date from '@/components/date';
+import { DateLabel } from '@/components/date';
 
 import { calculatePriorityColor } from '../../../lib/priority';
-import ProjectLabel from '../projects/project-label';
+import { ProjectLabel } from '../projects/project-label';
 import { TaskItem } from './types';
 
 interface TaskDetailsProps {
@@ -36,7 +36,7 @@ export default function Task({ task, open }: TaskDetailsProps) {
               </p>
             </div>
           )}
-          {task.dueDate && <Date date={task.dueDate} />}
+          {task.dueDate && <DateLabel className="mt-2" date={task.dueDate} />}
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-x-4">
