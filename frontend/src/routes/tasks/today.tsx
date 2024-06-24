@@ -1,8 +1,15 @@
+import {
+  CalendarDaysIcon,
+  ClipboardDocumentListIcon,
+  DocumentCheckIcon,
+} from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { useState } from 'react';
+import MediaQuery from 'react-responsive';
 
 import PageHeading from '@/components/page-heading';
 import PagePanel from '@/components/page-panel';
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@/components/tabs';
 import EventList from '@/widgets/events/event-list';
 import FocusedItem from '@/widgets/focused-item';
 import ProjectList from '@/widgets/projects/project-list';
@@ -114,30 +121,57 @@ const projects = [
 export default function Today() {
   // Move the scrollbar logic into the page-content component
   const [isTasksHovered, setTasksHovered] = useState(false);
-
   return (
     <>
-      <PagePanel
-        onMouseEnter={() => setTasksHovered(true)}
-        onMouseLeave={() => setTasksHovered(false)}
-        className={clsx(
-          'w-[100vw] overflow-y-auto lg:w-[50%]',
-          isTasksHovered ? 'on-scroll-hover' : '',
-        )}
-      >
-        <PageHeading text="Day at a Glance" />
-        <div className="h-2"></div>
-        <FocusedItem title="K8s Daily Stand Up" type="meeting" />
-        <div className="h-4"></div>
-        <div>
-          <TaskListing tasks={tasks} />
-        </div>
-      </PagePanel>
-      <PagePanel className="hidden overflow-y-auto pt-12 lg:block lg:w-[50%]">
-        <EventList events={events} />
-        <div className="h-4"></div>
-        <ProjectList projects={projects} />
-      </PagePanel>
+      <MediaQuery maxWidth={1023}>
+        <PagePanel className="w-[100vw] overflow-y-auto">
+          <PageHeading text="Day at a Glance" />
+          <div className="h-2"></div>
+          <FocusedItem title="K8s Daily Stand Up" type="meeting" />
+          <div className="h-2"></div>
+          <TabGroup className="my-2 flex flex-col items-end">
+            <TabList>
+              <Tab index={0} icon={DocumentCheckIcon} />
+              <Tab index={1} icon={CalendarDaysIcon} />
+              <Tab index={2} icon={ClipboardDocumentListIcon} />
+            </TabList>
+            <TabPanels className="mt-4 w-full flex-1">
+              <TabPanel index={0} className="transition-all">
+                <TaskListing tasks={tasks} />
+              </TabPanel>
+              <TabPanel index={1} className="transition-all">
+                <EventList events={events} />
+              </TabPanel>
+              <TabPanel index={2} className="transition-all">
+                <ProjectList projects={projects} />
+              </TabPanel>
+            </TabPanels>
+          </TabGroup>
+        </PagePanel>
+      </MediaQuery>
+      <MediaQuery minWidth={1024}>
+        <PagePanel
+          onMouseEnter={() => setTasksHovered(true)}
+          onMouseLeave={() => setTasksHovered(false)}
+          className={clsx(
+            'w-[100vw] overflow-y-auto lg:w-[50%]',
+            isTasksHovered ? 'on-scroll-hover' : '',
+          )}
+        >
+          <PageHeading text="Day at a Glance" />
+          <div className="h-2"></div>
+          <FocusedItem title="K8s Daily Stand Up" type="meeting" />
+          <div className="h-4"></div>
+          <div>
+            <TaskListing tasks={tasks} />
+          </div>
+        </PagePanel>
+        <PagePanel className="hidden overflow-y-auto pt-12 lg:block lg:w-[50%]">
+          <EventList events={events} />
+          <div className="h-4"></div>
+          <ProjectList projects={projects} />
+        </PagePanel>
+      </MediaQuery>
     </>
   );
 }
