@@ -1,7 +1,7 @@
 import { CheckIcon } from '@heroicons/react/16/solid';
 import clsx from 'clsx';
 
-import { Popover, PopoverButton, PopoverPanel } from '@/components/popover';
+import { Popover, PopoverButton, PopoverPanel } from '@/ui/components/popover';
 
 import { getEffortText } from './helpers';
 

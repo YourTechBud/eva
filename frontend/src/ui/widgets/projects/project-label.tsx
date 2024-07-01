@@ -1,8 +1,8 @@
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/16/solid';
-import clsx from 'clsx';
 
-import { Input } from '@/components/input';
-import { Popover, PopoverButton, PopoverPanel } from '@/components/popover';
+import { cn } from '@/lib/utils';
+import { Input } from '@/ui/components/input';
+import { Popover, PopoverButton, PopoverPanel } from '@/ui/components/popover';
 
 const sizes = {
   sm: 'text-sm',
@@ -22,9 +22,9 @@ export function ProjectLabel({
 }: ProjectLabelProps) {
   const projectName = name ? name : 'Inbox';
   return (
-    <div className={clsx('flex gap-[0.5rem]', className)}>
-      <p className={clsx('leading-6 text-gray-900', sizes[size])}>#</p>
-      <p className={clsx('leading-6 text-gray-900', sizes[size])}>
+    <div className={cn('flex gap-[0.5rem]', className)}>
+      <p className={cn('leading-6 text-gray-900', sizes[size])}>#</p>
+      <p className={cn('leading-6 text-gray-900', sizes[size])}>
         {projectName}
       </p>
     </div>
@@ -57,7 +57,7 @@ export function ProjectSelector({
   ));
   return (
     <Popover className="relative">
-      <PopoverButton className={clsx(className, 'flex items-center px-2 py-1')}>
+      <PopoverButton className={cn(className, 'flex items-center px-2 py-1')}>
         <ProjectLabel size="xs" name={project} />
         <ChevronDownIcon className="ml-auto mr-1 size-4 shrink-0 stroke-zinc-400" />
       </PopoverButton>

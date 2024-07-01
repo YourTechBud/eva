@@ -1,6 +1,6 @@
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 
-import SectionHeading from '@/components/section-heading';
+import SectionHeading from '@/ui/components/section-heading';
 
 import Event from './event';
 import { EventItem } from './types';

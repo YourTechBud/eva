@@ -15,7 +15,7 @@ import {
 } from '@heroicons/react/20/solid';
 import { Outlet, useLocation } from 'react-router';
 
-import { Avatar } from '@/components/avatar';
+import { Avatar } from '@/ui/components/avatar';
 import {
   Dropdown,
   DropdownButton,
@@ -23,13 +23,13 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
-} from '@/components/dropdown';
+} from '@/ui/components/dropdown';
 import {
   Navbar,
   NavbarItem,
   NavbarSection,
   NavbarSpacer,
-} from '@/components/navbar';
+} from '@/ui/components/navbar';
 import {
   Sidebar,
   SidebarBody,
@@ -39,8 +39,8 @@ import {
   SidebarLabel,
   SidebarSection,
   SidebarSpacer,
-} from '@/components/sidebar';
-import { SidebarLayout } from '@/components/sidebar-layout';
+} from '@/ui/components/sidebar';
+import { SidebarLayout } from '@/ui/components/sidebar-layout';
 
 export default function Root() {
   const { pathname } = useLocation();

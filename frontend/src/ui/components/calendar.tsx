@@ -2,6 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 import clsx from 'clsx';
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
+import { useMediaQuery } from 'react-responsive';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -11,6 +12,7 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const isLarge = useMediaQuery({ minWidth: 1024 });
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -23,7 +25,7 @@ function Calendar({
         nav: 'space-x-1 flex items-center',
         nav_button: clsx(
           'cursor-pointer flex items-center justify-center rounded-md transition',
-          'hover:bg-zinc-200 dark:hover:bg-zinc-700',
+          isLarge ? 'hover:bg-zinc-200 dark:hover:bg-zinc-700' : '',
           'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
         ),
         nav_button_previous: 'absolute left-1',

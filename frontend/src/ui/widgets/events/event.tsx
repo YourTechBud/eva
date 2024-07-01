@@ -3,17 +3,17 @@ import {
   EllipsisHorizontalIcon,
   MapPinIcon,
 } from '@heroicons/react/20/solid';
-import clsx from 'clsx';
 import { useState } from 'react';
 
-import { Avatar } from '@/components/avatar';
+import { formatDay, formatTime } from '@/lib/date';
+import { cn } from '@/lib/utils';
+import { Avatar } from '@/ui/components/avatar';
 import {
   Dropdown,
   DropdownButton,
   DropdownItem,
   DropdownMenu,
-} from '@/components/dropdown';
-import { formatDay, formatTime } from '@/lib/date';
+} from '@/ui/components/dropdown';
 
 import { EventItem } from './types';
 
@@ -77,7 +77,7 @@ export default function Event({ event }: EventProps) {
         <>
           <div className="h-4"></div>
           <div
-            className={clsx(
+            className={cn(
               'isolate flex  overflow-hidden',
               attendeeHover ? 'space-x-0' : '-space-x-1',
             )}

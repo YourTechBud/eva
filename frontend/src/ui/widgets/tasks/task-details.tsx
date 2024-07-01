@@ -1,10 +1,10 @@
 import { Bars3BottomLeftIcon, PlusIcon } from '@heroicons/react/16/solid';
 
-import { Button } from '@/components/button';
-import Checkbox from '@/components/checkbox';
-import { DateSelector } from '@/components/date';
-import { InputTitle } from '@/components/input';
-import { PrioritySelector } from '@/components/priority';
+import { Button } from '@/ui/components/button';
+import Checkbox from '@/ui/components/checkbox';
+import { DateSelector } from '@/ui/components/date';
+import { InputTitle } from '@/ui/components/input';
+import { PrioritySelector } from '@/ui/components/priority';
 
 import { calculatePriorityColor } from '../../../lib/priority';
 import { RichTextEditor } from '../editor/rich-text';

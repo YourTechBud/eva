@@ -7,13 +7,19 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import MediaQuery from 'react-responsive';
 
-import PageHeading from '@/components/page-heading';
-import PagePanel from '@/components/page-panel';
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@/components/tabs';
-import EventList from '@/widgets/events/event-list';
-import FocusedItem from '@/widgets/focused-item';
-import ProjectList from '@/widgets/projects/project-list';
-import TaskListing from '@/widgets/tasks/task-listing';
+import PageHeading from '@/ui/components/page-heading';
+import PagePanel from '@/ui/components/page-panel';
+import {
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+} from '@/ui/components/tabs';
+import EventList from '@/ui/widgets/events/event-list';
+import FocusedItem from '@/ui/widgets/focused-item';
+import ProjectList from '@/ui/widgets/projects/project-list';
+import TaskListing from '@/ui/widgets/tasks/task-listing';
 
 const tasks = [
   {

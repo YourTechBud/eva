@@ -8,11 +8,13 @@ import { Markdown } from 'tiptap-markdown';
 interface RichTextEditorProps {
   editable: boolean;
   defaultContent?: string;
+  placeholder?: string;
   onChange?: (content: string) => void;
 }
 
 export const RichTextEditor = ({
   editable,
+  placeholder,
   defaultContent,
   onChange,
 }: RichTextEditorProps) => {
@@ -53,7 +55,7 @@ export const RichTextEditor = ({
       }),
       Placeholder.configure({
         // Use a placeholder:
-        placeholder: 'Tell me more...',
+        placeholder: placeholder || 'Tell me more...',
         showOnlyWhenEditable: false,
       }),
       Markdown.configure({

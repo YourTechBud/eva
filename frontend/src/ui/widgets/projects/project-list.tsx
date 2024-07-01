@@ -1,6 +1,6 @@
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline';
 
-import SectionHeading from '@/components/section-heading';
+import SectionHeading from '@/ui/components/section-heading';
 
 import Project from './project';
 import { ProjectItem } from './types';
