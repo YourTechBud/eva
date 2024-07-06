@@ -7,7 +7,15 @@ import Task from './task';
 import { TaskDetailsDialog, TaskDismissWithNoteDialog } from './task-dialog';
 import { TaskItem } from './types';
 
-export default function TaskListing({ tasks }: { tasks: TaskItem[] }) {
+interface TaskListingProps {
+  tasks: TaskItem[];
+  showEffortGrouping?: boolean;
+}
+
+export default function TaskListing({
+  tasks,
+  showEffortGrouping,
+}: TaskListingProps) {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const [openDismissDialog, setOpenDismissDialog] = useState(false);
 
@@ -37,9 +45,14 @@ export default function TaskListing({ tasks }: { tasks: TaskItem[] }) {
 
   return (
     <>
+      {tasks.length === 0 && (
+        <div className="py-4 text-center text-xs text-gray-500">
+          No tasks to show.
+        </div>
+      )}
       {tasksByEffort.map(({ effort, tasks }) => (
         <div key={effort} className="mb-2">
-          <SectionHeading title={effort} />
+          {showEffortGrouping === true && <SectionHeading title={effort} />}
 
           <ul role="list" className="divide-y divide-gray-100">
             {tasks.map(task => (

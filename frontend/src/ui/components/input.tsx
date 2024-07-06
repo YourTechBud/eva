@@ -89,7 +89,7 @@ export const Input = forwardRef(function Input(
           // Basic layout
           'relative block w-full appearance-none rounded-lg px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing[3])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]',
           // Typography
-          'text-base/6 text-zinc-950 placeholder:text-zinc-500 sm:text-sm/6 dark:text-white',
+          'text-base/6 text-zinc-950 placeholder:text-zinc-500 dark:text-white sm:text-sm/6',
           // Border
           'border border-zinc-950/10 data-[hover]:border-zinc-950/20 dark:border-white/10 dark:data-[hover]:border-white/20',
           // Background color
@@ -124,7 +124,7 @@ export const InputTitle = (
   return (
     <textarea
       ref={textareaRef}
-      className="w-full border-none text-lg outline-none focus:ring-0 disabled:pointer-events-none disabled:opacity-50"
+      className="w-full resize-none border-none text-lg outline-none focus:ring-0 disabled:pointer-events-none disabled:bg-white"
       {...props}
     />
   );

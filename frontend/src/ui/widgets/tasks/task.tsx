@@ -98,10 +98,10 @@ export default function Task({ task, open, dismiss }: TaskDetailsProps) {
               </p>
             </div>
           )}
-          <div className="mt-1 flex gap-x-3">
+          <div className="mt-2 flex gap-x-3">
             {task.dueDate && (
               <>
-                <DateLabel className="mt-1" date={task.dueDate} />
+                <DateLabel date={task.dueDate} />
                 <div className="my-1 w-[1px] bg-gray-300"></div>
               </>
             )}

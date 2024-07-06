@@ -1,3 +1,6 @@
+import { NoteItem } from '../notes/types';
+import { TaskItem } from '../tasks/types';
+
 export interface EventItem {
   id: number;
   dateFrom: string;
@@ -8,4 +11,7 @@ export interface EventItem {
     name?: string;
     imageUrl?: string;
   }[];
+  tasks: TaskItem[];
+  notes: NoteItem[];
+  lastUpdate?: string;
 }

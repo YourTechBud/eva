@@ -22,7 +22,7 @@ export function ProjectLabel({
 }: ProjectLabelProps) {
   const projectName = name ? name : 'Inbox';
   return (
-    <div className={cn('flex gap-[0.5rem]', className)}>
+    <div className={cn('flex items-center gap-[0.5rem]', className)}>
       <p className={cn('leading-6 text-gray-900', sizes[size])}>#</p>
       <p className={cn('leading-6 text-gray-900', sizes[size])}>
         {projectName}

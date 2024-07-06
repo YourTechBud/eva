@@ -2,6 +2,8 @@ import {
   CalendarIcon,
   EllipsisHorizontalIcon,
   MapPinIcon,
+  PencilSquareIcon,
+  TrashIcon,
 } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 
@@ -12,6 +14,7 @@ import {
   Dropdown,
   DropdownButton,
   DropdownItem,
+  DropdownLabel,
   DropdownMenu,
 } from '@/ui/components/dropdown';
 
@@ -19,13 +22,14 @@ import { EventItem } from './types';
 
 interface EventProps {
   event: EventItem;
+  onClick?: () => void;
 }
 
-export default function Event({ event }: EventProps) {
+export default function Event({ event, onClick }: EventProps) {
   const [attendeeHover, setAttendeeHover] = useState(false);
   return (
     <>
-      <div className="flex space-x-6">
+      <div className="flex cursor-pointer space-x-6" onClick={onClick}>
         <div className="flex-auto">
           <p className="text-xs text-gray-500">{formatDay(event.dateFrom)}</p>
           <h3 className="pr-10 font-semibold text-gray-900 xl:pr-0">
@@ -64,10 +68,17 @@ export default function Event({ event }: EventProps) {
               className="h-5 w-5 text-gray-500 hover:text-gray-600"
               as={EllipsisHorizontalIcon}
               aria-label="Account options"
+              onClick={e => e.stopPropagation()}
             />
             <DropdownMenu anchor="bottom">
-              <DropdownItem>View Details</DropdownItem>
-              <DropdownItem>Dismiss</DropdownItem>
+              <DropdownItem>
+                <PencilSquareIcon />
+                <DropdownLabel>Add Note</DropdownLabel>
+              </DropdownItem>
+              <DropdownItem>
+                <TrashIcon />
+                <DropdownLabel>Dismiss</DropdownLabel>
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>

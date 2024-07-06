@@ -1,7 +1,7 @@
 import { CalendarDaysIcon, SunIcon } from '@heroicons/react/16/solid';
-import clsx from 'clsx';
 
 import { checkDate, getDifferenceInDays } from '@/lib/date';
+import { cn } from '@/lib/utils';
 
 import { Calendar } from './calendar';
 import { Popover, PopoverButton, PopoverPanel } from './popover';
@@ -42,7 +42,7 @@ export function DateLabel({ className, date }: DateProps) {
     value = checkDate(date);
   }
   return (
-    <span className={clsx(className, 'flex gap-1 text-xs', color)}>
+    <span className={cn(className, 'flex gap-1 text-xs', color)}>
       <CalendarDaysIcon className="size-4" /> {value}
     </span>
   );
@@ -52,7 +52,7 @@ export function DateSelector({ className, date }: DateProps) {
   const selectedDate = date ? new Date(date) : undefined;
   return (
     <Popover className="relative">
-      <PopoverButton className={clsx(className, 'p-2')}>
+      <PopoverButton className={cn(className, 'p-2')}>
         <DateLabel date={date} />
       </PopoverButton>
       <PopoverPanel>
