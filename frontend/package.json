@@ -6,8 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "lint": "eslint . && prettier --check .",
+    "fix": "eslint . --fix && prettier --write .",
     "preview": "vite preview",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "prettier": "prettier",
+    "eslint": "eslint"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",

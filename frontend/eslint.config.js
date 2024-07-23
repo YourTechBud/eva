@@ -4,7 +4,7 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config({
-  ignores: ['catalyst-ui-kit/**'],
+  ignores: ['catalyst-ui-kit/**', 'dist/**', 'node_modules/**'],
   extends: [
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
