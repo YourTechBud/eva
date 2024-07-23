@@ -8,19 +8,18 @@ on:
     branches:
       - master
 
-defaults:
-  run:
-    working-directory: frontend
-
 jobs:
-  deploy:
+  frontend-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: pnpm-setup
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
