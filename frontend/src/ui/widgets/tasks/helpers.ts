@@ -6,12 +6,15 @@ export const getEffortText = (effort: number): string => {
   return effortArray[effort - 1];
 };
 
-export const groupTasksByEffort = (tasks: TaskItem[]): { effort: string, tasks: TaskItem[] }[] => {
+export const groupTasksByEffort = (
+  tasks: TaskItem[],
+): { effort: string; tasks: TaskItem[] }[] => {
   return effortArray
     .map((effort, i) => {
       return {
         effort,
-        tasks: tasks.filter(t => t.effort === i + 1)
+        tasks: tasks
+          .filter(t => t.effort === i + 1)
           // TODO: Sort first by priority and the due date.
           .sort((a, b) => a.priority - b.priority),
       };

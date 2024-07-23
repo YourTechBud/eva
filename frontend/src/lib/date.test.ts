@@ -28,7 +28,6 @@ describe('formatDate', () => {
   });
 });
 
-
 describe('checkDate', () => {
   it('returns "Today" for today\'s date', () => {
     const today = new Date().toISOString();

@@ -25,7 +25,7 @@ export function checkDate(rfc3339String: string) {
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  // Get this Saturday's date 
+  // Get this Saturday's date
   const thisSaturday = new Date(today);
   thisSaturday.setDate(today.getDate() + (6 - today.getDay()));
 
@@ -88,15 +88,30 @@ export function formatDay(rfc3339String: string) {
   const nth = (day: number) => {
     if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
-      case 1: return 'st';
-      case 2: return 'nd';
-      case 3: return 'rd';
-      default: return 'th';
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
     }
   };
 
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   const day = date.getDate();
